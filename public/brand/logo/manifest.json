@@ -1,0 +1,13 @@
+{
+  "source": "Picorn vector signet (Cry Console)",
+  "updatedAt": "2026-10-13T01:03:51.660Z",
+  "files": {
+    "signet.svg": "Logo vetorial na UI (header, auth) — mascote sem círculo de fundo",
+    "signet-favicon.svg": "Logo vetorial para favicon/metadata — com círculo #0F172A",
+    "signet.png": "Logo raster 512px, fundo transparente (sem círculo)",
+    "hero.png": "Logo raster 640px (alternativa ao SVG no hero)",
+    "icon-192.png": "Ícone PWA / Apple touch (com círculo)",
+    "favicon-32.png": "Favicon raster 32px (com círculo)"
+  },
+  "regenerate": "pnpm brand:export-logo (UI a partir de crystal.svg; favicon a partir de crystal-badge.svg)"
+}
