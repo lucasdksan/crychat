@@ -84,5 +84,5 @@ export async function saveAiProviderAction(
     },
   });
 
-  redirect("/admin/ia");
+  redirect("/admin?section=ai-providers");
 }

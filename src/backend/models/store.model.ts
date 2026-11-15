@@ -4,15 +4,17 @@ import {
   decryptStorePayload,
   encryptStorePayload,
 } from "@/backend/lib/account/store-credentials-crypto";
+import {
+  normalizeStoredCredential,
+  type CommerceCredentialPayload,
+} from "@/backend/modules/commerce/application/credential-payload";
 
-export type VtexCredentialPayload = {
-  accountName: string;
-  environment: string;
-  appKey: string;
-  appToken: string;
-};
+export type {
+  CommerceCredentialPayload,
+  VtexCredentialPayload,
+} from "@/backend/modules/commerce/application/credential-payload";
 
-export type StoreCredentialPayload = VtexCredentialPayload;
+export type StoreCredentialPayload = CommerceCredentialPayload;
 
 export function createStore(input: {
   ownerId: string;
@@ -21,6 +23,23 @@ export function createStore(input: {
   platform: CommercePlatform;
 }) {
   return prisma.store.create({ data: input });
+}
+
+export function deleteStore(storeId: string) {
+  return prisma.store.delete({ where: { id: storeId } });
+}
+
+export function updateStoreConnection(
+  storeId: string,
+  input: { platform: CommercePlatform; domain?: string },
+) {
+  return prisma.store.update({
+    where: { id: storeId },
+    data: {
+      platform: input.platform,
+      ...(input.domain ? { domain: input.domain } : {}),
+    },
+  });
 }
 
 export function listStoresByOwner(ownerId: string) {
@@ -57,7 +76,11 @@ export async function upsertStoreCredentials(
 export function readStoreCredentials(
   storeId: string,
   encryptedPayload: string,
-): StoreCredentialPayload {
+): CommerceCredentialPayload {
   const json = decryptStorePayload(storeId, encryptedPayload);
-  return JSON.parse(json) as StoreCredentialPayload;
+  const payload = normalizeStoredCredential(JSON.parse(json) as unknown);
+  if (!payload) {
+    throw new Error("Credenciais da loja em formato desconhecido.");
+  }
+  return payload;
 }

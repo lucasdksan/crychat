@@ -1,6 +1,5 @@
 "use server";
 
-import { z } from "zod";
 import { redirect } from "next/navigation";
 
 import { auth } from "@/backend/auth";
@@ -8,30 +7,23 @@ import { createCommerceConnector } from "@/backend/modules/commerce/infra/factor
 import { resolveAiProviderForStore } from "@/backend/modules/ai/application/resolve-provider";
 import { runCatalogSyncJob } from "@/backend/modules/catalog/application/sync-catalog";
 import { PineconeVectorStore } from "@/backend/modules/search/infra/pinecone-vector-store";
+import { connectStoreIntegration } from "@/backend/modules/commerce/application/connect-store";
+import { isCommercePlatform } from "@/backend/modules/commerce/application/credential-payload";
 import {
   createStore,
+  deleteStore,
   findStoreForOwner,
-  upsertStoreCredentials,
-  type VtexCredentialPayload,
 } from "@/backend/models/store.model";
 import { setActiveStore } from "@/backend/models/user.model";
 import { prisma } from "@/backend/models/prisma";
-
-const vtexStoreSchema = z.object({
-  name: z.string().min(2),
-  domain: z.string().optional(),
-  accountName: z.string().min(2),
-  environment: z.string().default("vtexcommercestable"),
-  appKey: z.string().min(2),
-  appToken: z.string().min(2),
-});
+import { integrationProviderSpec } from "@/experience/integration-providers";
 
 export type StoreActionState = {
   error?: string;
   fieldErrors?: Record<string, string[]>;
 };
 
-export async function createVtexStoreAction(
+export async function createStoreAction(
   _prev: StoreActionState,
   formData: FormData,
 ): Promise<StoreActionState> {
@@ -40,50 +32,47 @@ export async function createVtexStoreAction(
     return { error: "Não autenticado." };
   }
 
-  const parsed = vtexStoreSchema.safeParse({
-    name: formData.get("name"),
-    domain: formData.get("domain") || undefined,
-    accountName: formData.get("accountName"),
-    environment: formData.get("environment") || "vtexcommercestable",
-    appKey: formData.get("appKey"),
-    appToken: formData.get("appToken"),
-  });
-
-  if (!parsed.success) {
-    return {
-      fieldErrors: parsed.error.flatten().fieldErrors as Record<string, string[]>,
-    };
+  const name = String(formData.get("name") ?? "").trim();
+  const domain = String(formData.get("domain") ?? "").trim();
+  const platform = String(formData.get("platform") ?? "vtex");
+  if (name.length < 2) {
+    return { fieldErrors: { name: ["Informe o nome da loja."] } };
+  }
+  if (!isCommercePlatform(platform)) {
+    return { error: "Plataforma não suportada." };
   }
 
-  const payload: VtexCredentialPayload = {
-    accountName: parsed.data.accountName,
-    environment: parsed.data.environment,
-    appKey: parsed.data.appKey,
-    appToken: parsed.data.appToken,
-  };
+  const fields: Record<string, string> = {};
+  const spec = integrationProviderSpec(platform);
+  for (const field of spec?.fields ?? []) {
+    fields[field.key] = String(formData.get(field.key) ?? "");
+  }
 
   const store = await createStore({
     ownerId: session.user.id,
-    name: parsed.data.name,
-    domain: parsed.data.domain,
-    platform: "vtex",
+    name,
+    domain: domain || undefined,
+    platform,
   });
 
-  await upsertStoreCredentials(store.id, "vtex", payload);
-  await setActiveStore(session.user.id, store.id);
-
-  const connector = createCommerceConnector(
-    "vtex",
-    store.id,
-    (await findStoreForOwner(store.id, session.user.id))!.credential!
-      .encryptedPayload,
-  );
-
-  const valid = await connector.validateCredentials();
-  if (!valid) {
-    return { error: "Credenciais VTEX inválidas. Verifique App Key e App Token." };
+  try {
+    await connectStoreIntegration({
+      storeId: store.id,
+      provider: platform,
+      fields,
+      publicDomain: domain || undefined,
+    });
+  } catch (error) {
+    await deleteStore(store.id);
+    return {
+      error:
+        error instanceof Error
+          ? error.message
+          : "Não foi possível conectar a loja.",
+    };
   }
 
+  await setActiveStore(session.user.id, store.id);
   redirect("/admin");
 }
 

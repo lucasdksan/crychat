@@ -1,7 +1,8 @@
 import { z } from "zod";
 
-import { recordProductClick } from "@/backend/models/search-event.model";
+import { handleExperienceEventPost } from "@/backend/controllers/experience.controller";
 import { recordAnalyticsEvent } from "@/backend/models/analytics.model";
+import { recordProductClick } from "@/backend/models/search-event.model";
 
 const eventSchema = z.object({
   storeId: z.string(),
@@ -14,6 +15,16 @@ const eventSchema = z.object({
 
 export async function handleEventsPost(request: Request) {
   const json = await request.json().catch(() => null);
+  if (json && typeof json === "object" && "tenantId" in json && !("storeId" in json)) {
+    return handleExperienceEventPost(
+      new Request(request.url, {
+        method: "POST",
+        headers: request.headers,
+        body: JSON.stringify(json),
+      }),
+    );
+  }
+
   const parsed = eventSchema.safeParse(json);
   if (!parsed.success) {
     return Response.json({ error: "Entrada inválida." }, { status: 400 });

@@ -2,7 +2,7 @@
 
 import { AuthError } from "next-auth";
 
-import { signIn } from "@/backend/auth";
+import { signIn, signOut } from "@/backend/auth";
 import { sanitizeRedirectPath } from "@/backend/lib/auth/redirect";
 
 export async function signInWithGoogle(formData: FormData) {
@@ -18,4 +18,8 @@ export async function signInWithGoogle(formData: FormData) {
     }
     throw error;
   }
+}
+
+export async function signOutAction() {
+  await signOut({ redirectTo: "/entrar" });
 }

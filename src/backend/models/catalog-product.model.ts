@@ -33,6 +33,14 @@ export function upsertCatalogProduct(
   });
 }
 
+export function listCatalogProductsByStore(storeId: string, take = 120) {
+  return prisma.catalogProduct.findMany({
+    where: { storeId },
+    orderBy: { updatedAt: "desc" },
+    take,
+  });
+}
+
 export function searchCatalogLexical(
   storeId: string,
   query: string,
