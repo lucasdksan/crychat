@@ -100,6 +100,10 @@ model Store {
   name      String
   domain    String?
   platform  CommercePlatform @default(vtex)
+  /// Vitrine: modo, IA (UI), visual, Pinecone e integrações (estado admin)
+  experienceSettings  Json?
+  /// Métricas da vitrine demo (buscas, feedback, séries diárias)
+  experienceAnalytics Json?
   owner     User             @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   users     User[]           @relation("ActiveStore")
   credential StoreCredential?
