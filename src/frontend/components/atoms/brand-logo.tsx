@@ -27,7 +27,7 @@ export function BrandLogo({
       : "text-xl leading-none";
 
   return (
-    <div className={cn("flex items-center gap-2.5", className)}>
+    <span className={cn("flex items-center gap-2.5", className)}>
       <span
         className={cn(
           "relative flex shrink-0 items-center justify-center overflow-hidden",
@@ -57,6 +57,6 @@ export function BrandLogo({
           CryChat
         </span>
       ) : null}
-    </div>
+    </span>
   );
 }

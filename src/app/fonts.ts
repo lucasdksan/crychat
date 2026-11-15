@@ -1,6 +1,6 @@
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { DM_Sans, Plus_Jakarta_Sans } from "next/font/google";
 
-export const inter = Inter({
+export const inter = DM_Sans({
   variable: "--font-inter",
   subsets: ["latin"],
 });

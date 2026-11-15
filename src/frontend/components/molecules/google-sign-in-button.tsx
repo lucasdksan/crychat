@@ -1,4 +1,5 @@
 import { signInWithGoogle } from "@/backend/controllers/auth.controller";
+import { DEFAULT_AUTHENTICATED_PATH } from "@/backend/lib/auth/redirect";
 import { Button } from "@/frontend/components/ui/button";
 
 type GoogleSignInButtonProps = {
@@ -8,7 +9,7 @@ type GoogleSignInButtonProps = {
 export function GoogleSignInButton({ redirectTo }: GoogleSignInButtonProps) {
   return (
     <form action={signInWithGoogle}>
-      <input type="hidden" name="to" value={redirectTo ?? "/chat"} />
+      <input type="hidden" name="to" value={redirectTo ?? DEFAULT_AUTHENTICATED_PATH} />
       <Button
         type="submit"
         variant="secondary"

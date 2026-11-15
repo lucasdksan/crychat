@@ -120,6 +120,7 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    letter-spacing: 0.005em;
   }
 
   button:not(:disabled),

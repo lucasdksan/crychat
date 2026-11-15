@@ -11,7 +11,7 @@ type AdminTemplateProps = {
 const links = [
   { href: "/admin", key: "dashboard", label: "Métricas" },
   { href: "/admin/lojas/nova", key: "stores", label: "Loja VTEX" },
-  { href: "/admin/ia", key: "ia", label: "Provedores IA" },
+  { href: "/admin?section=ai-providers", key: "ia", label: "Provedores IA" },
   { href: "/chat", key: "chat", label: "Chat" },
 ] as const;
 
