@@ -4,7 +4,7 @@ vi.mock("@/backend/models/prisma", () => ({
   prisma: {},
 }));
 
-import { INITIAL_ANALYTICS, INITIAL_TENANTS } from "@/backend/lib/experience/catalog";
+import { INITIAL_ANALYTICS, INITIAL_TENANTS } from "@/backend/modules/experience/application/catalog";
 import {
   getStoreExperienceFields,
   parseExperienceAnalytics,

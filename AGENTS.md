@@ -11,7 +11,7 @@ Monólito **Next.js 16** (App Router): SaaS de chat inteligente para e-commerce 
 | Server Action | `src/backend/controllers/` (`"use server"`) |
 | Leitura server-side | `src/backend/controllers/*-query.ts` sem `"use server"` |
 | Prisma por entidade | `src/backend/models/` |
-| Domínio (DDD) | `src/backend/modules/<domínio>/` |
+| Domínio (DDD) | `src/backend/modules/<domínio>/` — ex.: vitrine demo → `modules/experience/domain/types.ts`; specs de credencial por plataforma → `modules/commerce/domain/integration-providers.ts` |
 | Utilitário backend | `src/backend/lib/<domínio>/` |
 | UI Atomic | `src/frontend/components/{atoms,molecules,organisms,templates,ui}` |
 | Proxy | `src/proxy.ts` + `src/backend/lib/proxy/` |

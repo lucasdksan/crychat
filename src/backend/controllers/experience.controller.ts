@@ -9,7 +9,7 @@ import {
   replaceAnalytics,
   updateRuntimeTenant,
   ensureRuntimeTenantForStore,
-} from "@/backend/lib/experience/runtime-store";
+} from "@/backend/modules/experience/application/runtime-store";
 import {
   runAIShoppingTurn,
   runVisualSearch,
@@ -22,7 +22,7 @@ import {
 } from "@/backend/models/store.model";
 import { setActiveStore } from "@/backend/models/user.model";
 import { connectStoreIntegration } from "@/backend/modules/commerce/application/connect-store";
-import type { SearchFilters } from "@/experience/commerce-types";
+import type { SearchFilters } from "@/backend/modules/experience/domain/types";
 
 async function requireOwnedStore(storeId: string) {
   const session = await auth();

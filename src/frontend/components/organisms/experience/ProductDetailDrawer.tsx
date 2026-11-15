@@ -2,7 +2,7 @@
 
 import { Check, GitCompare, Plus, Star, X } from 'lucide-react';
 import { productImageSrc } from '@/frontend/lib/product-images';
-import type { Product } from '@/experience/commerce-types';
+import type { Product } from '@/backend/modules/experience/domain/types';
 import { formatBRL } from '@/frontend/lib/format';
 
 interface ProductDetailDrawerProps {

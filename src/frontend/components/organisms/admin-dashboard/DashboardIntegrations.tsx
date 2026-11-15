@@ -8,8 +8,8 @@ import type {
   PineconeQuotaMode,
   Product,
   Tenant,
-} from '@/experience/commerce-types';
-import { integrationProviderSpec } from '@/experience/integration-providers';
+} from '@/backend/modules/experience/domain/types';
+import { integrationProviderSpec } from '@/backend/modules/commerce/domain/integration-providers';
 import { formatBRL, formatShortDateTime } from '@/frontend/lib/format';
 
 function initialFields(provider: CommerceProvider) {

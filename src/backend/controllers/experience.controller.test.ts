@@ -30,7 +30,7 @@ vi.mock("@/backend/models/user.model", () => ({
   setActiveStore: (...args: unknown[]) => setActiveStoreMock(...args),
 }));
 
-vi.mock("@/backend/lib/experience/runtime-store", () => ({
+vi.mock("@/backend/modules/experience/application/runtime-store", () => ({
   getOrCreateAnalytics: (...args: unknown[]) => getOrCreateAnalyticsMock(...args),
   replaceAnalytics: (...args: unknown[]) => replaceAnalyticsMock(...args),
   listExperienceProducts: (...args: unknown[]) => listExperienceProductsMock(...args),
@@ -50,7 +50,7 @@ import {
   handleTenantConfigPost,
   handleTenantsGet,
 } from "@/backend/controllers/experience.controller";
-import { INITIAL_ANALYTICS, INITIAL_TENANTS } from "@/backend/lib/experience/catalog";
+import { INITIAL_ANALYTICS, INITIAL_TENANTS } from "@/backend/modules/experience/application/catalog";
 
 describe("experience.controller", () => {
   beforeEach(() => {

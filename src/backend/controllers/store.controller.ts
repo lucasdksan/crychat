@@ -16,7 +16,7 @@ import {
 } from "@/backend/models/store.model";
 import { setActiveStore } from "@/backend/models/user.model";
 import { prisma } from "@/backend/models/prisma";
-import { integrationProviderSpec } from "@/experience/integration-providers";
+import { integrationProviderSpec } from "@/backend/modules/commerce/domain/integration-providers";
 
 export type StoreActionState = {
   error?: string;

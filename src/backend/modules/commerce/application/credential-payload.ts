@@ -1,5 +1,5 @@
 import type { CommercePlatform } from "@/generated/prisma/client";
-import { integrationProviderSpec } from "@/experience/integration-providers";
+import { integrationProviderSpec } from "@/backend/modules/commerce/domain/integration-providers";
 
 export type VtexCredentialPayload = {
   platform: "vtex";

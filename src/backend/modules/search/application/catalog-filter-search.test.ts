@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { Product } from "@/experience/commerce-types";
+import type { Product } from "@/backend/modules/experience/domain/types";
 import {
   executeHybridSearch,
   extractQueryIntent,

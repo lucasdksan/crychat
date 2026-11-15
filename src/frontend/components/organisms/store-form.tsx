@@ -10,7 +10,7 @@ import { Button } from "@/frontend/components/ui/button";
 import {
   INTEGRATION_PROVIDERS,
   type IntegrationProviderSpec,
-} from "@/experience/integration-providers";
+} from "@/backend/modules/commerce/domain/integration-providers";
 
 const inputClass =
   "h-10 w-full rounded-md border border-border bg-input px-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none";

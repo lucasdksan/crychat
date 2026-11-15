@@ -18,7 +18,7 @@ vi.mock("@google/genai", () => ({
   },
 }));
 
-import { INITIAL_PRODUCTS, INITIAL_TENANTS } from "@/backend/lib/experience/catalog";
+import { INITIAL_PRODUCTS, INITIAL_TENANTS } from "@/backend/modules/experience/application/catalog";
 import {
   runAIShoppingTurn,
   runVisualSearch,

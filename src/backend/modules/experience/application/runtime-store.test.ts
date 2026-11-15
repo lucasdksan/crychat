@@ -8,7 +8,7 @@ import {
   buildTenantFromStore,
   isLegacyDemoStore,
   listRuntimeTenants,
-} from "@/backend/lib/experience/runtime-store";
+} from "@/backend/modules/experience/application/runtime-store";
 
 describe("buildTenantFromStore", () => {
   it("constrói Tenant com slug, namespace e integração conectada quando há credencial", () => {

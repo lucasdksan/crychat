@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { productImageSrc } from '@/frontend/lib/product-images';
-import type { ChatMessage, Product } from '@/experience/commerce-types';
+import type { ChatMessage, Product } from '@/backend/modules/experience/domain/types';
 import { formatBRL } from '@/frontend/lib/format';
 import { QualitySurveyCard } from './QualitySurveyCard';
 

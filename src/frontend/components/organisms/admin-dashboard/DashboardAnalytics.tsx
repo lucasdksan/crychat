@@ -2,7 +2,7 @@
 
 import { Star } from 'lucide-react';
 import { useState } from 'react';
-import type { AnalyticsSummary, Tenant } from '@/experience/commerce-types';
+import type { AnalyticsSummary, Tenant } from '@/backend/modules/experience/domain/types';
 import { formatNumber, formatShortDateTime } from '@/frontend/lib/format';
 
 interface DashboardAnalyticsProps {

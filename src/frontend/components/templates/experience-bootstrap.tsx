@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
-import type { Product, Tenant } from "@/experience/commerce-types";
+import type { Product, Tenant } from "@/backend/modules/experience/domain/types";
 import { EmptyStoreOnboarding } from "@/frontend/components/molecules/empty-store-onboarding";
 import { ExperienceWorkspace } from "@/frontend/components/organisms/experience/ExperienceWorkspace";
 import { ExperienceVitrineShell } from "@/frontend/components/templates/experience-vitrine-shell";

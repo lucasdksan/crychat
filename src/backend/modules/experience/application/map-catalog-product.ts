@@ -1,5 +1,5 @@
 import type { CatalogProduct } from "@/generated/prisma/client";
-import type { Product, ProductCategory } from "@/experience/commerce-types";
+import type { Product, ProductCategory } from "@/backend/modules/experience/domain/types";
 
 const CATEGORY_VALUES: ProductCategory[] = [
   "Notebooks",

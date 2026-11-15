@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { signOutAction } from '@/backend/controllers/auth.controller';
-import type { Tenant } from '@/experience/commerce-types';
+import type { Tenant } from '@/backend/modules/experience/domain/types';
 import { BrandLogo } from '@/frontend/components/atoms/brand-logo';
 import { formatNumber } from '@/frontend/lib/format';
 

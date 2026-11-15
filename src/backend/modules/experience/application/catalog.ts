@@ -1,4 +1,8 @@
-import type { AnalyticsSummary, Product, Tenant } from "@/experience/commerce-types";
+import type {
+  AnalyticsSummary,
+  Product,
+  Tenant,
+} from "@/backend/modules/experience/domain/types";
 
 export const INITIAL_TENANTS: Tenant[] = [
   {

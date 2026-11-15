@@ -1,4 +1,4 @@
-import type { Product, ProductCategory, SearchFilters } from "@/experience/commerce-types";
+import type { Product, ProductCategory, SearchFilters } from "@/backend/modules/experience/domain/types";
 
 function normalizeText(value: string): string {
   return value

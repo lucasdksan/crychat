@@ -20,7 +20,7 @@ import type {
   ProductCategory,
   SearchFilters,
   Tenant,
-} from '@/experience/commerce-types';
+} from '@/backend/modules/experience/domain/types';
 import { fileToBase64, formatBRL } from '@/frontend/lib/format';
 import { AssistantPanel } from './AssistantPanel';
 import { CartDrawer } from './CartDrawer';

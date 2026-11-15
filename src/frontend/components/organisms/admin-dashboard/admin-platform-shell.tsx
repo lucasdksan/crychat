@@ -9,7 +9,7 @@ import type {
   ExperienceMode,
   Product,
   Tenant,
-} from "@/experience/commerce-types";
+} from "@/backend/modules/experience/domain/types";
 import { EmptyStoreOnboarding } from "@/frontend/components/molecules/empty-store-onboarding";
 import { DashboardAIProviders } from "@/frontend/components/organisms/admin-dashboard/DashboardAIProviders";
 import { DashboardAnalytics } from "@/frontend/components/organisms/admin-dashboard/DashboardAnalytics";

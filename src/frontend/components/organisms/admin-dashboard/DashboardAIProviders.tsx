@@ -8,7 +8,7 @@ import type {
   AIQuotaMode,
   ExperienceMode,
   Tenant,
-} from '@/experience/commerce-types';
+} from '@/backend/modules/experience/domain/types';
 import { AiProviderForm } from '@/frontend/components/organisms/ai-provider-form';
 import { formatNumber } from '@/frontend/lib/format';
 

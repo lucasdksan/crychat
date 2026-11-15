@@ -1,28 +1,26 @@
-export type ExperienceMode = 'hybrid' | 'discover' | 'classic';
+import type { CommercePlatformKey } from "@/backend/modules/commerce/domain/types";
 
-export type CommerceProvider =
-  | 'vtex'
-  | 'shopify'
-  | 'woocommerce'
-  | 'nuvemshop'
-  | 'custom';
+export type ExperienceMode = "hybrid" | "discover" | "classic";
+
+/** Alias da plataforma de catálogo (mesmo conjunto que `CommercePlatformKey`). */
+export type CommerceProvider = CommercePlatformKey;
 
 export type AIProviderId =
-  | 'google-gemini'
-  | 'openai'
-  | 'anthropic'
-  | 'groq'
-  | 'mistral';
+  | "google-gemini"
+  | "openai"
+  | "anthropic"
+  | "groq"
+  | "mistral";
 
-export type AIQuotaMode = 'crychat-managed' | 'customer-byok';
+export type AIQuotaMode = "crychat-managed" | "customer-byok";
 
-export type PineconeQuotaMode = 'crychat-quota' | 'customer-token';
+export type PineconeQuotaMode = "crychat-quota" | "customer-token";
 
 export type ProductCategory =
-  | 'Notebooks'
-  | 'Smartphones'
-  | 'Áudio'
-  | 'Monitores';
+  | "Notebooks"
+  | "Smartphones"
+  | "Áudio"
+  | "Monitores";
 
 export interface ProductSpecs {
   processor?: string;
@@ -59,11 +57,11 @@ export interface Product {
 
 export interface SearchFilters {
   query: string;
-  category: ProductCategory | 'Todos';
+  category: ProductCategory | "Todos";
   minRamGb: number | null;
   maxPrice: number | null;
-  brand: string | 'Todas';
-  sortBy: 'relevance' | 'price_asc' | 'price_desc' | 'rating';
+  brand: string | "Todas";
+  sortBy: "relevance" | "price_asc" | "price_desc" | "rating";
 }
 
 export interface IntegrationConfig {
@@ -75,7 +73,7 @@ export interface IntegrationConfig {
   webhookActive: boolean;
   lastSyncAt: string | null;
   indexedVectors: number;
-  syncStatus: 'ok' | 'pending' | 'error';
+  syncStatus: "ok" | "pending" | "error";
 }
 
 export interface PineconeConfig {
@@ -93,7 +91,7 @@ export interface AIConfig {
   provider: AIProviderId;
   quotaMode: AIQuotaMode;
   model: string;
-  tone: 'Consultivo' | 'Técnico' | 'Objetivo';
+  tone: "Consultivo" | "Técnico" | "Objetivo";
   temperature: number;
   maxRecommendations: number;
   monthlyTokenLimit: number;
@@ -105,9 +103,13 @@ export interface AIConfig {
 export interface VisualCustomization {
   primaryColor: string;
   borderRadiusPx: number;
-  cardDensity: 'detalhado' | 'compacto';
-  widgetPosition: 'bottom-right' | 'bottom-left';
-  installTarget: 'floating-widget' | 'search-bar' | 'hybrid-page' | 'custom-slot';
+  cardDensity: "detalhado" | "compacto";
+  widgetPosition: "bottom-right" | "bottom-left";
+  installTarget:
+    | "floating-widget"
+    | "search-bar"
+    | "hybrid-page"
+    | "custom-slot";
   customCss: string;
 }
 
@@ -125,7 +127,7 @@ export interface Tenant {
 
 export interface ChatMessage {
   id: string;
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
   timestamp: string;
   recommendedProductIds?: string[];
@@ -134,14 +136,14 @@ export interface ChatMessage {
   suggestedFollowUps?: string[];
   escalatedToHuman?: boolean;
   visualMatchSummary?: string;
-  feedbackVote?: 'helpful' | 'unhelpful';
+  feedbackVote?: "helpful" | "unhelpful";
 }
 
 export interface SatisfactionFeedback {
   id: string;
-  rating: number; // 1 to 5
+  rating: number;
   helpful: boolean;
-  context: 'chat' | 'busca' | 'comparacao';
+  context: "chat" | "busca" | "comparacao";
   reason?: string;
   comment?: string;
   createdAt: string;

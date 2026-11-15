@@ -1,4 +1,4 @@
-import type { CommerceProvider } from "@/experience/commerce-types";
+import type { CommercePlatformKey } from "@/backend/modules/commerce/domain/types";
 
 export type IntegrationField = {
   key: string;
@@ -10,7 +10,7 @@ export type IntegrationField = {
 };
 
 export type IntegrationProviderSpec = {
-  id: CommerceProvider;
+  id: CommercePlatformKey;
   label: string;
   summary: string;
   fields: IntegrationField[];

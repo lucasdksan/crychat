@@ -7,7 +7,7 @@ import type {
   IntegrationConfig,
   PineconeConfig,
   VisualCustomization,
-} from "@/experience/commerce-types";
+} from "@/backend/modules/experience/domain/types";
 
 export type StoreExperienceSettings = {
   defaultMode: ExperienceMode;

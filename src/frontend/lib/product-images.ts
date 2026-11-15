@@ -1,4 +1,4 @@
-import type { Product } from "@/experience/commerce-types";
+import type { Product } from "@/backend/modules/experience/domain/types";
 
 export function productImageSrc(product: Pick<Product, "imageKey" | "imageUrl">) {
   if (product.imageUrl) {

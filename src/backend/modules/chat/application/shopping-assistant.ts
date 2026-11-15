@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type } from '@google/genai';
-import type { AIConfig, ChatMessage, Product, SearchFilters } from "@/experience/commerce-types";
+import type { AIConfig, ChatMessage, Product, SearchFilters } from "@/backend/modules/experience/domain/types";
 
 function getGeminiClient(): GoogleGenAI {
   const apiKey = process.env.GEMINI_API_KEY;

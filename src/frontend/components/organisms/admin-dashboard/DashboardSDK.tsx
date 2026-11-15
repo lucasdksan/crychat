@@ -2,7 +2,7 @@
 
 import { Check, Code2, Copy } from 'lucide-react';
 import { useState } from 'react';
-import type { Tenant, VisualCustomization } from '@/experience/commerce-types';
+import type { Tenant, VisualCustomization } from '@/backend/modules/experience/domain/types';
 
 interface DashboardSDKProps {
   activeTenant: Tenant;

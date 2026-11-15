@@ -1,5 +1,5 @@
 import type { Store } from "@/generated/prisma/client";
-import { mapCatalogProductToExperienceProduct } from "@/backend/lib/experience/map-catalog-product";
+import { mapCatalogProductToExperienceProduct } from "@/backend/modules/experience/application/map-catalog-product";
 import { listCatalogProductsByStore } from "@/backend/models/catalog-product.model";
 import {
   findStoreExperienceAnalyticsJson,
@@ -15,8 +15,8 @@ import type {
   IntegrationConfig,
   Product,
   Tenant,
-} from "@/experience/commerce-types";
-import { INTEGRATION_PROVIDERS } from "@/experience/integration-providers";
+} from "@/backend/modules/experience/domain/types";
+import { INTEGRATION_PROVIDERS } from "@/backend/modules/commerce/domain/integration-providers";
 
 const SEEDED_FEEDBACK_IDS = new Set(["fb-1", "fb-2", "fb-3", "fb-k1"]);
 const DEMO_STORE_DOMAINS = new Set([

@@ -3,7 +3,7 @@
 import { Check, Plus, ThumbsDown, ThumbsUp, X } from 'lucide-react';
 import { useState } from 'react';
 import { productImageSrc } from '@/frontend/lib/product-images';
-import type { Product } from '@/experience/commerce-types';
+import type { Product } from '@/backend/modules/experience/domain/types';
 import { formatBRL } from '@/frontend/lib/format';
 
 interface ComparisonModalProps {
